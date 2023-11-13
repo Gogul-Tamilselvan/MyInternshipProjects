@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+ECOM | Home
+{% endblock %}
+{% block content %}
+<section class="bg-light py-4 my-5">
+  <div class="container">
+    <div class="row">
+      <h4>{{category_name}} Products</h4>
+      <hr class="border-color:white;" />
+      {% include 'message.html' %}
+      {% for item in products %}
+      <div class="col-md-4 col-lg-3">
+        <div class="card my-3">
+          <img src="{{item.image.url}}" class="card-image-top" alt="Categories" />
+          <div class="card-body">
+            <a href="{%url 'product_details' category_name item.name %}" class="mobilename">
+              <h5 class="card-title text-primary">{{ item.name }}</h5>
+            </a>
+            <p class="card-text">
+              <span class="old_price float-start"><s>Rs.{{ item.old_price | stringformat:'d' }} </s></span>
+              <span class="new_price float-end">Rs.{{ item.new_price | stringformat:'d' }}</span>
+            </p>
+          </div>
+
+
+          {% endfor %}
+
+        </div>
+      </div>
+</section>
+{% endblock %}
